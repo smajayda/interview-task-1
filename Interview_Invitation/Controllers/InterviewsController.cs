@@ -55,60 +55,6 @@ public class InterviewController : Controller
         return View();
     }
 
-    //[HttpPost]
-    //public async Task<IActionResult> Create(Interview model)
-    //{
-
-    //    var interviewees = new List<Interviewee>();
-
-    //    foreach (var intervieweeModel in model.Interviewees)
-    //    {
-    //        if (intervieweeModel.CvFile != null)
-    //        {
-    //            var cvFileName = Guid.NewGuid().ToString() + Path.GetExtension(intervieweeModel.CvFile.FileName);
-
-
-
-    //            var cvFilePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", cvFileName);
-
-    //            using (var stream = new FileStream(cvFilePath, FileMode.Create))
-    //            {
-    //                await intervieweeModel.CvFile.CopyToAsync(stream);
-    //            }
-
-    //            interviewees.Add(new Interviewee
-    //            {
-    //                FullName = intervieweeModel.FullName,
-    //                Email = intervieweeModel.Email,
-    //                ContactNumber = intervieweeModel.ContactNumber,
-    //                CvFilePath = Path.Combine("uploads", cvFileName)
-    //            });
-    //        }
-    //    }
-    //    var interview = new Interview
-    //    {
-    //        InterviewerName = model.InterviewerName,
-    //        Date = model.Date,
-    //        Duration = model.Duration,
-    //        InterviewType = model.InterviewType,
-    //        Subjects = model.Subjects.Select(s => new Subject
-    //        {
-    //            Code = s.Code,
-    //            Title = s.Title,
-    //            Interviewer = s.Interviewer
-    //        }).ToList(),
-    //        Interviewees = interviewees
-    //    };
-
-    //    _context.Interviews.Add(interview);
-    //    await _context.SaveChangesAsync();
-
-
-
-    //    return View(model);
-
-    //}
-
     [HttpPost]
     public async Task<IActionResult> Create(Interview model)
     {
@@ -267,7 +213,7 @@ public class InterviewController : Controller
     }
 
 
-    // GET: Interview/Delete/5
+    // GET: Interview/Delete
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null)
