@@ -1,0 +1,116 @@
+﻿@model Interview_Invitation.Models.Interview
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<link rel="stylesheet" href="path-to-your-styles.css" />
+
+<form asp-controller="Interview" asp-action="Edit" class="container interview-create-wrapper" method="post" enctype="multipart/form-data">
+     
+    <div class="form-group" id="interview-container">
+        <div class="interview-item">
+            <h5>Edit Interview Invitation</h5>
+            <br />
+
+                <label asp-for="InterviewerName">Interviewer Name</label>
+                <input asp-for="InterviewerName" class="form-control" />
+                <span asp-validation-for="InterviewerName" class="text-danger"></span>
+ 
+   
+                <label asp-for="Date">Interview Date</label>
+                <input asp-for="Date" type="datetime-local" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+   
+        
+                <label asp-for="Duration">Interview Duration (minutes)</label>
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+       
+     
+                <label asp-for="InterviewType">Interview Type</label>
+                <select asp-for="InterviewType" class="form-control">
+                    <option value="Remotely">Remotely</option>
+                    <option value="Inside">Inside</option>
+                </select>
+                <span asp-validation-for="InterviewType" class="text-danger"></span>
+         </div>
+    </div>
+
+            <!-- Subjects -->
+     
+
+            <div class="form-group" id="subject-container">
+        <div class="subject-item">
+            <h5>Subjects</h5> 
+            <br />
+                @for (var i = 0; i < Model.Subjects.Count; i++)
+                {
+                 
+                        <label>Code</label>
+                        <input asp-for="Subjects[i].Code" class="form-control" />
+                        <span asp-validation-for="Subjects[i].Code" class="text-danger"></span>
+                        <br />
+                        <label>Title</label>
+                        <input asp-for="Subjects[i].Title" class="form-control" />
+                        <span asp-validation-for="Subjects[i].Title" class="text-danger"></span>
+                        <br />
+                        <label>Interviewer</label>
+                        <input asp-for="Subjects[i].Interviewer" class="form-control" />
+                        <span asp-validation-for="Subjects[i].Interviewer" class="text-danger"></span>
+              
+                 
+                }
+        </div>
+            </div>
+
+            <!-- Interviewees -->
+        
+        <div class="form-group" id="interviewee-container">
+        <div class="interviewee-item">
+        <h5>Interviewees</h5>
+            <br />
+                @for (var i = 0; i < Model.Interviewees.Count; i++)
+                {
+                  
+                        <label>Full Name</label>
+                        <input asp-for="Interviewees[i].FullName" class="form-control" />
+                        <span asp-validation-for="Interviewees[i].FullName" class="text-danger"></span>
+                        <br />
+                        <label>Email</label>
+                        <input asp-for="Interviewees[i].Email" class="form-control" />
+                        <span asp-validation-for="Interviewees[i].Email" class="text-danger"></span>
+                        <br />
+                        <label>Contact Number</label>
+                        <input asp-for="Interviewees[i].ContactNumber" class="form-control" />
+                        <span asp-validation-for="Interviewees[i].ContactNumber" class="text-danger"></span>
+                        <br />
+                <label>Uploaded CV</label>
+                        @foreach (var interviewee in Model.Interviewees)
+                        {
+
+                            <a href="/@interviewee.CvFilePath" target="_blank">Download CV</a>
+                    <br />
+                    <br />
+                        }
+                <label>Upload New CV</label>
+                        <input asp-for="Interviewees[0].CvFile" name="Interviewees[0].CvFile" type="file" class="form-control" accept=".pdf" />
+                   
+                }
+        </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Update Interview</button>
+</form>
+
+<br />
+<br />
+
+<form>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+
+@section Scripts {
+    <script>
+
+    </script>
+}

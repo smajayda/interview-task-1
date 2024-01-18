@@ -1,0 +1,45 @@
+﻿@model List<Interview_Invitation.Models.Interview>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="path-to-your-styles.css" />
+
+<div class="container mt-5">
+    <form>
+        <a asp-action="Create" class="btn btn-primary">Add New Interview Invitation</a>
+    </form>
+    <br />
+  
+<h4>Dashboard For Interviewees</h4>
+
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Interviewer Name</th>
+            <th>Date</th>
+            <th>Duration (minutes)</th>
+            <th>Interview Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var interview in Model)
+        {
+            <tr>
+                <td>@interview.InterviewerName</td>
+                <td>@interview.Date.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@interview.Duration</td>
+                <td>@interview.InterviewType</td>
+                <td>
+                        <a asp-action="Edit" asp-route-id="@interview.InterviewId" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Details" asp-route-id="@interview.InterviewId" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Delete" asp-route-id="@interview.InterviewId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,124 @@
+﻿@model Interview_Invitation.Models.Interview
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<link rel="stylesheet" href="path-to-your-styles.css" />
+
+<h1 >Delete Interview</h1>
+<br />
+<!-- Interview Invitation Details -->
+<div class="form-group" id="interview-container">
+    <div class="interview-item">
+        <h5>Interview Invitation Details</h5>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Interviewer
+            </dt>
+            <dd class="col-sm-10">
+                @Model.InterviewerName
+            </dd>
+            <dt class="col-sm-2">
+                Date
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Date.ToString("yyyy-MM-dd HH:mm")
+            </dd>
+
+            <dt class="col-sm-2">
+                Duration
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Duration minutes
+            </dd>
+
+            <dt class="col-sm-2">
+                Interview Type
+            </dt>
+            <dd class="col-sm-10">
+                @Model.InterviewType
+            </dd>
+        </dl>
+    </div>
+
+
+    <!-- Subjects -->
+    <div class="form-group" id="interview-container">
+        <div class="interview-item">
+            <h5>Subjects Details</h5>
+            <hr />
+            <dl class="row">
+                @foreach (var subject in Model.Subjects)
+                {
+                    <dt class="col-sm-2">
+                        Code
+                    </dt>
+                    <dd class="col-sm-10">
+                        @subject.Code
+                    </dd>
+                    <dt class="col-sm-2">
+                        Title
+                    </dt>
+                    <dd class="col-sm-10">
+                        @subject.Title
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        Interviewer
+                    </dt>
+                    <dd class="col-sm-10">
+                        @subject.Interviewer
+                    </dd>
+                }
+            </dl>
+        </div>
+
+
+        <!-- Interviewees -->
+        <div class="form-group" id="interview-container">
+            <div class="interview-item">
+                <h5>Interviewees Details</h5>
+                <hr />
+                <dl class="row">
+                    @foreach (var interviewee in Model.Interviewees)
+                    {
+                        <dt class="col-sm-2">
+                            Full Name
+                        </dt>
+                        <dd class="col-sm-10">
+                            @interviewee.FullName
+                        </dd>
+                        <dt class="col-sm-2">
+                            Email
+                        </dt>
+                        <dd class="col-sm-10">
+                            @interviewee.Email
+                        </dd>
+                        <dt class="col-sm-2">
+                            Contac tNumber
+                        </dt>
+                        <dd class="col-sm-10">
+                            @interviewee.ContactNumber
+                        </dd>
+                        <dt class="col-sm-2">
+                            Uploaded CV
+                        </dt>
+                        <dd class="col-sm-10">
+                            <a href="/@interviewee.CvFilePath" target="_blank">Download CV</a>
+                        </dd>
+                    }
+                </dl>
+            </div>
+
+<form asp-action="Delete" asp-route-id="@Model.InterviewId" method="post">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+         
+</form>
+
+            <br />
+            <br />
+
+            <form>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </form>
